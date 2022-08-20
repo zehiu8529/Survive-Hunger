@@ -45,4 +45,13 @@ public class PlayersHunger : MonoBehaviour
         rate -= 0.5f;
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Food")
+        {
+            hungerMeter -= 10f;
+            Destroy(collision.gameObject);
+        }
+    }
 }
