@@ -8,11 +8,11 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float speed = 360;
     private Rigidbody2D rb;
-    SoundHandler soundHandler;
+    /*SoundHandler soundHandler;*/
     // Start is called before the first frame update
     void Start()
     {
-        soundHandler = GetComponent<SoundHandler>();
+        /*soundHandler = GetComponent<SoundHandler>();*/
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
-            SoundHandler.PlayWalkingSound();
+            /*SoundHandler.PlayWalkingSound();*/
         }
     }
     private void FixedUpdate()
