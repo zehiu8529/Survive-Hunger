@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8168997550326968689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.25, y: -10.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a3ebb392cdd4942a0c9d997d9d1c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 360
+  speed: 200
 --- !u!114 &8168997550326968687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,4 +162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerMeter: 101
   hungerSlider: {fileID: 0}
+  timer: 0.25
+  rate: 0.25
   explosionPrefabs: {fileID: 3366151715333811116, guid: 46b4217b73b022344a9c8b2ede47adc8, type: 3}
