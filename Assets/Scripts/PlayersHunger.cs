@@ -10,11 +10,13 @@ public class PlayersHunger : MonoBehaviour
     [SerializeField]
     private Image hungerSlider;
     private float smooth = 3f;
-    private float timer = .5f;
-    private float rate = .5f;
+    private float timer = .25f;
+    private float rate = .25f;
     private float decreaseNumber = 1f;
     private float maxNumber = 101;
     private float minNumber = 0;
+    [SerializeField]
+    private GameObject explosionPrefabs;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +30,31 @@ public class PlayersHunger : MonoBehaviour
     void Update()
     {
         hungerMeter = Mathf.Clamp(hungerMeter,0,101);
-        timer = Mathf.Clamp(timer,0.5f,5f);
-        rate = Mathf.Clamp(rate, 0.5f, 5f);
+        timer = Mathf.Clamp(timer,0.25f,5f);
+        rate = Mathf.Clamp(rate, 0.25f, 5f);
         float lerpSpeed = smooth * Time.deltaTime;
         hungerSlider.fillAmount = Mathf.Lerp(hungerSlider.fillAmount,hungerMeter/maxNumber,lerpSpeed);
+        if(hungerMeter == maxNumber)
+        {
+            Death();
+        }
     }
 
     private void HungerIncrease()
     {
         hungerMeter += decreaseNumber;
-        Debug.Log(hungerMeter);
     }
     private void TimeAndRateIncrease()
     {
         timer -= 0.5f;
         rate -= 0.5f;
         
+    }
+
+    private void Death()
+    {
+        Instantiate(explosionPrefabs,transform.position,Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
