@@ -10,7 +10,9 @@ public class PlayersHunger : MonoBehaviour
     [SerializeField]
     private Image hungerSlider;
     private float smooth = 3f;
+    [SerializeField]
     private float timer = .25f;
+    [SerializeField]
     private float rate = .25f;
     private float decreaseNumber = 1f;
     private float maxNumber = 101;
@@ -66,12 +68,12 @@ public class PlayersHunger : MonoBehaviour
         }
         if (collision.gameObject.tag == "Food" && collision.gameObject.layer == 7)
         {
-            hungerMeter -= 10f;
+            hungerMeter -= 15f;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Food" && collision.gameObject.layer == 8)
         {
-            hungerMeter -= 20f;
+            hungerMeter -= 25f;
             Destroy(collision.gameObject);
         }
     }
