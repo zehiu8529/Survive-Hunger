@@ -19,6 +19,9 @@ public class PlayersHunger : MonoBehaviour
     private float minNumber = 0;
     [SerializeField]
     private GameObject explosionPrefabs;
+
+    GameObject gameMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,37 +29,57 @@ public class PlayersHunger : MonoBehaviour
         InvokeRepeating("HungerIncrease",timer,rate);
         
         hungerMeter = minNumber;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        hungerMeter = Mathf.Clamp(hungerMeter,0,101);
-        timer = Mathf.Clamp(timer,0.25f,5f);
-        rate = Mathf.Clamp(rate, 0.25f, 5f);
-        float lerpSpeed = smooth * Time.deltaTime;
-        hungerSlider.fillAmount = Mathf.Lerp(hungerSlider.fillAmount,hungerMeter/maxNumber,lerpSpeed);
-        if(hungerMeter == maxNumber)
-        {
-            Death();
-        }
+        gameMenu = GameObject.Find("Game Menu");        
     }
-
+    
+    // Increase hunger overtime
     private void HungerIncrease()
     {
         hungerMeter += decreaseNumber;
     }
+
+    // What do this method do? :v
     private void TimeAndRateIncrease()
     {
         timer -= 0.5f;
-        rate -= 0.5f;
-        
+        rate -= 0.5f;        
     }
 
-    private void Death()
+    /// <summary>
+    /// Calculate current hunger amount
+    /// </summary>
+    public void CalculateHungerOverTime()
+    {
+        hungerMeter = Mathf.Clamp(hungerMeter, 0, 101);
+        timer = Mathf.Clamp(timer, 0.25f, 5f);
+        rate = Mathf.Clamp(rate, 0.25f, 5f);
+        float lerpSpeed = smooth * Time.deltaTime;
+        hungerSlider.fillAmount = Mathf.Lerp(hungerSlider.fillAmount, hungerMeter / maxNumber, lerpSpeed);
+    }
+
+    /// <summary>
+    /// Check if player is died
+    /// </summary>
+    /// <returns></returns>
+    public bool IsDead()
+    {
+        if(hungerMeter == maxNumber)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Player die and display game over menu
+    /// </summary>
+    public void Die()
     {
         Instantiate(explosionPrefabs,transform.position,Quaternion.identity);
         Destroy(gameObject);
+
+        gameMenu.GetComponent<MenuHandler>().DisplayGameOverMenu();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -76,5 +99,5 @@ public class PlayersHunger : MonoBehaviour
             hungerMeter -= 25f;
             Destroy(collision.gameObject);
         }
-    }
+    }    
 }

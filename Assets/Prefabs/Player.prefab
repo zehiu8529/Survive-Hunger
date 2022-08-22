@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8168997550326968688}
   - component: {fileID: 8168997550326968684}
   - component: {fileID: 8168997550326968687}
+  - component: {fileID: 1871058936}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  walkRate: 3
 --- !u!114 &8168997550326968687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +167,15 @@ MonoBehaviour:
   timer: 0.25
   rate: 0.25
   explosionPrefabs: {fileID: 3366151715333811116, guid: 46b4217b73b022344a9c8b2ede47adc8, type: 3}
+--- !u!114 &1871058936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168997550326968689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fdc7464911ac94291d96e0cf9f0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
