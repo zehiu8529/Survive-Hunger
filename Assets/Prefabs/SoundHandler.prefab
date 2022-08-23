@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSound: {fileID: 8300000, guid: f234c5c9581cf1d4e9ce843db78ca7ea, type: 3}
+  clearedSound: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}

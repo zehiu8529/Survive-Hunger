@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SoundHandler : MonoBehaviour
 {
-    public AudioClip walkingSound;    
+    [SerializeReference] AudioClip walkingSound;
+    [SerializeReference] AudioClip clearedSound;
     AudioSource audioSource;
     float timer;
 
@@ -29,4 +30,9 @@ public class SoundHandler : MonoBehaviour
             }
         }
     }   
+
+    public void PlayClearedStageSound()
+    {
+        audioSource.PlayOneShot(clearedSound);
+    }
 }
