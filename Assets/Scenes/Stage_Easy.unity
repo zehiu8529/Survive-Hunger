@@ -797,14 +797,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.47
       objectReference: {fileID: 0}
@@ -845,28 +837,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8168997550326968687, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: rate
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168997550326968687, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: timer
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168997550326968687, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: hungerSlider
       value: 
       objectReference: {fileID: 1630884861}
     - target: {fileID: 8168997550326968689, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168997550326968690, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1852537682, guid: 40e05242694246c41a434ab7cabf7574, type: 3}
-    - target: {fileID: 8168997550326968690, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
@@ -1542,7 +1518,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2165,6 +2141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1636179374102576621, guid: 0007d746a00f77d40b3769dd7b916d01, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1288258908}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0007d746a00f77d40b3769dd7b916d01, type: 3}
 --- !u!114 &1630884861 stripped
