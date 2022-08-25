@@ -5,7 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     GameObject soundHandler;
-
+    [SerializeField]
+    private Animator spriteRenderer;
     [SerializeField]
     private float speed = 360;
     private Rigidbody2D rb;
@@ -17,7 +18,8 @@ public class Movement : MonoBehaviour
        
         soundHandler = GameObject.Find("SoundHandler");        
     }
-    
+
+
     /// <summary>
     /// Make character move when there is input from player
     /// </summary>
@@ -30,6 +32,17 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(moveX * speed, moveY * speed);
         // Play walking or fast walking sound
         soundHandler.GetComponent<SoundHandler>().PlayWalkingSound(walkRate);
+        // Play animation when input is higher than 0.01
+        if(Mathf.Abs(GetInput().x) > 0.01f || Mathf.Abs(GetInput().y) > 0.01f)
+        {
+            spriteRenderer.SetFloat("Velocity",0.1f);
+        }
+        else
+        {
+            spriteRenderer.SetFloat("Velocity",-0.1f);
+        }
+        
+
     }
 
     /// <summary>
