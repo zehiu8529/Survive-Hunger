@@ -20,19 +20,21 @@ public class PlayersHunger : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefabs;
 
-    GameObject gameMenu;
+    MenuHandler menuHandler;
+    SoundHandler soundHandler;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("TimeAndRateIncrease",1,1);
-        InvokeRepeating("HungerIncrease",timer,rate);
-        
+        InvokeRepeating("TimeAndRateIncrease", 1, 1);
+        InvokeRepeating("HungerIncrease", timer, rate);
+
         hungerMeter = minNumber;
 
-        gameMenu = GameObject.Find("Game Menu");        
+        soundHandler = GameObject.Find("SoundHandler").GetComponent<SoundHandler>();
+        menuHandler = GameObject.Find("Game Menu").GetComponent<MenuHandler>();
     }
-    
+
     // Increase hunger overtime
     private void HungerIncrease()
     {
@@ -43,7 +45,7 @@ public class PlayersHunger : MonoBehaviour
     private void TimeAndRateIncrease()
     {
         timer -= 0.5f;
-        rate -= 0.5f;        
+        rate -= 0.5f;
     }
 
     /// <summary>
@@ -64,7 +66,7 @@ public class PlayersHunger : MonoBehaviour
     /// <returns></returns>
     public bool IsDead()
     {
-        if(hungerMeter == maxNumber)
+        if (hungerMeter == maxNumber)
         {
             return true;
         }
@@ -76,28 +78,35 @@ public class PlayersHunger : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        Instantiate(explosionPrefabs,transform.position,Quaternion.identity);
-        Destroy(gameObject);
+        menuHandler.DisplayGameOverMenu();
+        soundHandler.PlayExplodeOnDeathSound();
 
-        gameMenu.GetComponent<MenuHandler>().DisplayGameOverMenu();
+        Instantiate(explosionPrefabs, transform.position, Quaternion.identity);
+        Destroy(gameObject);        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Food" && collision.gameObject.layer == 6)
+        // Check if collide with food and reduce hunger when in-touch
+        if (collision.gameObject.tag == "Food")
         {
-            hungerMeter -= 5f;
+            switch (collision.gameObject.layer)
+            {
+                case 6:
+                    hungerMeter -= 5f;
+                    break;
+                case 7:
+                    hungerMeter -= 15f;
+                    break;
+                case 8:
+                    hungerMeter -= 25f;
+                    break;
+                default:
+                    break;
+            }
             Destroy(collision.gameObject);
+            soundHandler.PlayReplenishSound();
         }
-        if (collision.gameObject.tag == "Food" && collision.gameObject.layer == 7)
-        {
-            hungerMeter -= 15f;
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.tag == "Food" && collision.gameObject.layer == 8)
-        {
-            hungerMeter -= 25f;
-            Destroy(collision.gameObject);
-        }
-    }    
+
+    }
 }

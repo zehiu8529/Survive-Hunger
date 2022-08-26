@@ -6,6 +6,8 @@ public class SoundHandler : MonoBehaviour
 {
     [SerializeReference] AudioClip walkingSound;
     [SerializeReference] AudioClip clearedSound;
+    [SerializeReference] AudioClip replenishSound;
+    [SerializeReference] AudioClip explodeSound;
     AudioSource audioSource;
     float timer;
 
@@ -33,6 +35,21 @@ public class SoundHandler : MonoBehaviour
 
     public void PlayClearedStageSound()
     {
-        audioSource.PlayOneShot(clearedSound);
+        PlaySound(clearedSound);
+    }
+
+    public void PlayReplenishSound()
+    {
+        PlaySound(replenishSound);
+    }
+
+    public void PlayExplodeOnDeathSound()
+    {
+        PlaySound(explodeSound);
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

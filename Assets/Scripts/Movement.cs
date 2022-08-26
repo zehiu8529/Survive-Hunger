@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    GameObject soundHandler;
+    SoundHandler soundHandler;
     [SerializeField]
     private Animator spriteRenderer;
     [SerializeField]
@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     {        
         rb = GetComponent<Rigidbody2D>();
        
-        soundHandler = GameObject.Find("SoundHandler");        
+        soundHandler = GameObject.Find("SoundHandler").GetComponent<SoundHandler>();        
     }
 
 
@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
         float moveY = inputY * Time.fixedDeltaTime;
         rb.velocity = new Vector2(moveX * speed, moveY * speed);
         // Play walking or fast walking sound
-        soundHandler.GetComponent<SoundHandler>().PlayWalkingSound(walkRate);
+        soundHandler.PlayWalkingSound(walkRate);
         // Play animation when input is higher than 0.01
         if(Mathf.Abs(GetInput().x) > 0.01f || Mathf.Abs(GetInput().y) > 0.01f)
         {

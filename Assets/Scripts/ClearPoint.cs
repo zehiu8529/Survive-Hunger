@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ClearPoint : MonoBehaviour
 {
-    GameObject gameMenu;
-    GameObject soundHandler;
+    MenuHandler menuHandler;
+    SoundHandler soundHandler;
 
     private void Start()
     {
-        gameMenu = GameObject.Find("Game Menu");
-        soundHandler = GameObject.Find("SoundHandler");
+        menuHandler = GameObject.Find("Game Menu").GetComponent<MenuHandler>();
+        soundHandler = GameObject.Find("SoundHandler").GetComponent<SoundHandler>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            soundHandler.GetComponent<SoundHandler>().PlayClearedStageSound();
-            gameMenu.GetComponent<MenuHandler>().DisplayGameClearedMenu();
+            soundHandler.PlayClearedStageSound();
+            menuHandler.DisplayGameClearedMenu();
             this.gameObject.SetActive(false);
         }
     }

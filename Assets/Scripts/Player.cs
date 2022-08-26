@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayersHunger>();
-        characterMovement = GetComponent<Movement>();
+        characterMovement = GetComponent<Movement>();       
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         player.CalculateHungerOverTime();
         if (player.IsDead())
         {
-            player.Die();
+            player.Die();            
         }
     }
 
