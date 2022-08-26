@@ -10,13 +10,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Camera
   - Water
   - UI
   - Small
   - Medium
   - Big
-  - 
+  - Camera Bound
   - 
   - 
   - 
@@ -49,8 +49,14 @@ TagManager:
   - name: Wall
     uniqueID: 2222134761
     locked: 0
+  - name: Food
+    uniqueID: 2882245543
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2522018477
     locked: 0
   - name: Player
     uniqueID: 3918832623
