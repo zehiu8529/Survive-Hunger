@@ -1789,6 +1789,8 @@ GameObject:
   - component: {fileID: 4836376360236764509}
   - component: {fileID: 4836376360236764506}
   - component: {fileID: 4836376360236764510}
+  - component: {fileID: 1384152470}
+  - component: {fileID: 3243476469921346888}
   m_Layer: 5
   m_Name: Game Menu
   m_TagString: Untagged
@@ -1897,6 +1899,38 @@ MonoBehaviour:
   gameOverMenu: {fileID: 4836376358624804057}
   gameClearedMenu: {fileID: 4836376358869027931}
   gamePauseMenu: {fileID: 6032643791887819944}
+--- !u!95 &1384152470
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836376360236764507}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c012a9f6896e015488abb7df9d09a5a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &3243476469921346888
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836376360236764507}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4836376360244482468
 GameObject:
   m_ObjectHideFlags: 0
