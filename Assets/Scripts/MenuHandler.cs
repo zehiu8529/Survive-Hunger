@@ -11,22 +11,29 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] TextMeshProUGUI difficultyMenu;
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
+    [SerializeField] Animator transition;
+    [SerializeReference] Animator menuTransition;
+    [SerializeField] CanvasGroup groupControl;
+    private float transitionTime = 1f;
     [SerializeReference] GameObject gamePauseMenu;
 
     private void Start()
     {
-        try
-        {
-            if(startButton != null && difficultyMenu != null)
-            {
-                Debug.Log(".............");
-            }
-        }
-        catch
-        {
-            Debug.Log("It's fine :v");
-        }
+        /*        try
+                {
+                    if(startButton != null && difficultyMenu != null)
+                    {
+                        Debug.Log(".............");
+                    }
+                }
+                catch
+                {
+                    Debug.Log("It's fine :v");
+                }*/
+        groupControl.interactable = true;
+        groupControl.blocksRaycasts = true;
     }
+
 
     /// <summary>
     /// Change to difficulty selection section
@@ -42,7 +49,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartEasyStage()
     {
-        SceneManager.LoadScene(1);
+       StartCoroutine( LoadLevel(1));
     }
 
     /// <summary>
@@ -50,7 +57,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartMediumStage()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(LoadLevel(2));
     }
 
     /// <summary>
@@ -58,7 +65,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartHardStage()
     {
-        SceneManager.LoadScene(3);
+        StartCoroutine(LoadLevel(3));
     }
 
     /// <summary>
@@ -66,7 +73,8 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void TryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));   
+            
     }
 
     /// <summary>
@@ -74,8 +82,8 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void Return()
     {
+        StartCoroutine(LoadLevel(0));
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
     }
 
     /// <summary>
@@ -83,8 +91,8 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>
@@ -112,6 +120,16 @@ public class MenuHandler : MonoBehaviour
         gameClearedMenu.gameObject.SetActive(true);
     }
 
+    IEnumerator LoadLevel(int levelNumber)
+    {
+        transition.SetTrigger("Start");
+        menuTransition.SetTrigger("Begin");
+        groupControl.interactable = true;
+        groupControl.blocksRaycasts = true;
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelNumber);
+    }
+    
     /// <summary>
     /// Set game pause object active state to true
     /// </summary>
