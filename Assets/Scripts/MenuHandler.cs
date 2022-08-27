@@ -11,21 +11,28 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] TextMeshProUGUI difficultyMenu;
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
+    [SerializeField] Animator transition;
+    [SerializeReference] Animator menuTransition;
+    [SerializeField] CanvasGroup groupControl;
+    private float transitionTime = 1f;
 
     private void Start()
     {
-        try
-        {
-            if(startButton != null && difficultyMenu != null)
-            {
-                Debug.Log(".............");
-            }
-        }
-        catch
-        {
-            Debug.Log("It's fine :v");
-        }
+        /*        try
+                {
+                    if(startButton != null && difficultyMenu != null)
+                    {
+                        Debug.Log(".............");
+                    }
+                }
+                catch
+                {
+                    Debug.Log("It's fine :v");
+                }*/
+        groupControl.interactable = true;
+        groupControl.blocksRaycasts = true;
     }
+
 
     /// <summary>
     /// Change to difficulty selection section
@@ -41,7 +48,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartEasyStage()
     {
-        SceneManager.LoadScene(1);
+       StartCoroutine( LoadLevel(1));
     }
 
     /// <summary>
@@ -49,7 +56,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartMediumStage()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(LoadLevel(2));
     }
 
     /// <summary>
@@ -57,7 +64,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartHardStage()
     {
-        SceneManager.LoadScene(3);
+        StartCoroutine(LoadLevel(3));
     }
 
     /// <summary>
@@ -65,7 +72,8 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void TryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));   
+            
     }
 
     /// <summary>
@@ -73,7 +81,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void Return()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadLevel(0));
     }
 
     /// <summary>
@@ -81,7 +89,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     /// <summary>
@@ -98,5 +106,15 @@ public class MenuHandler : MonoBehaviour
     public void DisplayGameClearedMenu()
     {
         gameClearedMenu.gameObject.SetActive(true);
+    }
+
+    IEnumerator LoadLevel(int levelNumber)
+    {
+        transition.SetTrigger("Start");
+        menuTransition.SetTrigger("Begin");
+        groupControl.interactable = true;
+        groupControl.blocksRaycasts = true;
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelNumber);
     }
 }
