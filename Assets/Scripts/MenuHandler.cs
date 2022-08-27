@@ -15,6 +15,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] Animator menuTransition;
     [SerializeField] CanvasGroup groupControl;
     private float transitionTime = 1f;
+    [SerializeReference] GameObject gamePauseMenu;
 
     private void Start()
     {
@@ -82,6 +83,7 @@ public class MenuHandler : MonoBehaviour
     public void Return()
     {
         StartCoroutine(LoadLevel(0));
+        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -90,6 +92,16 @@ public class MenuHandler : MonoBehaviour
     public void NextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// Continue to play
+    /// </summary>
+    public void Continue()
+    {
+        gamePauseMenu.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -116,5 +128,13 @@ public class MenuHandler : MonoBehaviour
         groupControl.blocksRaycasts = true;
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelNumber);
+    }
+    
+    /// <summary>
+    /// Set game pause object active state to true
+    /// </summary>
+    public void DisplayGamePauseMenu()
+    {
+        gamePauseMenu.gameObject.SetActive(true);
     }
 }

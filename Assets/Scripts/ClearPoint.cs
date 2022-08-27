@@ -19,6 +19,7 @@ public class ClearPoint : MonoBehaviour
         {
             soundHandler.PlayClearedStageSound();
             menuHandler.DisplayGameClearedMenu();
+            Time.timeScale = 0;
             this.gameObject.SetActive(false);
         }
     }
