@@ -11,27 +11,28 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] TextMeshProUGUI difficultyMenu;
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
-    [SerializeField] Animator transition;
-    [SerializeReference] Animator menuTransition;
-    [SerializeField] CanvasGroup groupControl;
+    Animator transition;
+    Animator menuTransition;
+    CanvasGroup groupControl;
     private float transitionTime = 1f;
     [SerializeReference] GameObject gamePauseMenu;
 
     private void Start()
     {
-        /*        try
-                {
-                    if(startButton != null && difficultyMenu != null)
-                    {
-                        Debug.Log(".............");
-                    }
-                }
-                catch
-                {
-                    Debug.Log("It's fine :v");
-                }*/
+        try
+        {
+            groupControl = GetComponentInChildren<CanvasGroup>();            
+        }
+        catch
+        {
+            groupControl = GameObject.Find("Game Menu").GetComponent<CanvasGroup>();
+        }
+
         groupControl.interactable = true;
         groupControl.blocksRaycasts = true;
+
+        transition = GameObject.Find("LevelLoader").GetComponentInChildren<Animator>();
+        menuTransition = GameObject.Find("Game Menu").GetComponent<Animator>();
     }
 
 

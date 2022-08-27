@@ -741,11 +741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.47
+      value: -17.87
       objectReference: {fileID: 0}
     - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.39
+      value: -9.39
       objectReference: {fileID: 0}
     - target: {fileID: 8168997550326968685, guid: ecfd75a8d9e878646a34c4c69f9eb420, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1638,10 +1638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4836376358869027931, guid: 461f7b76b1db5bf4bbfe6d0083b9afd9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4836376360236764507, guid: 461f7b76b1db5bf4bbfe6d0083b9afd9, type: 3}
       propertyPath: m_Name
       value: Game Menu
