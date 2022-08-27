@@ -11,6 +11,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] TextMeshProUGUI difficultyMenu;
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
+    [SerializeReference] GameObject gamePauseMenu;
 
     private void Start()
     {
@@ -73,6 +74,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void Return()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -81,7 +83,17 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    /// <summary>
+    /// Continue to play
+    /// </summary>
+    public void Continue()
+    {
+        gamePauseMenu.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -98,5 +110,13 @@ public class MenuHandler : MonoBehaviour
     public void DisplayGameClearedMenu()
     {
         gameClearedMenu.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Set game pause object active state to true
+    /// </summary>
+    public void DisplayGamePauseMenu()
+    {
+        gamePauseMenu.gameObject.SetActive(true);
     }
 }
