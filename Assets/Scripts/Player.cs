@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     MenuHandler menuHandler;
 
-    int clearTime;
+    int clearTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
         characterMovement = GetComponent<Movement>();
 
         menuHandler = GameObject.Find("Game Menu").GetComponent<MenuHandler>();
+
+        InvokeRepeating("Counting", 1f, 1f);
     }
 
     // Update is called once per frame
@@ -29,11 +31,9 @@ public class Player : MonoBehaviour
             player.Die();            
         }
         else
-        {
-            clearTime++;
-        }
-
-        menuHandler.UpdateTimer((int)(clearTime / 100));
+        {            
+            menuHandler.UpdateTimer(clearTime);
+        }       
         PauseGame();
     }
 
@@ -49,5 +49,10 @@ public class Player : MonoBehaviour
             Time.timeScale = 0;
             menuHandler.DisplayGamePauseMenu();
         }
+    }
+
+    void Counting()
+    {        
+        clearTime++;
     }
 }

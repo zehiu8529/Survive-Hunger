@@ -12,6 +12,9 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
     [SerializeReference] TextMeshProUGUI timerText;
+    [SerializeReference] TextMeshProUGUI clearTimeText;
+    int minute;
+    int second;
     Animator transition;
     Animator menuTransition;
     CanvasGroup groupControl;
@@ -22,7 +25,7 @@ public class MenuHandler : MonoBehaviour
     {
         try
         {
-            groupControl = GetComponentInChildren<CanvasGroup>();            
+            groupControl = GetComponentInChildren<CanvasGroup>();
         }
         catch
         {
@@ -51,7 +54,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void StartEasyStage()
     {
-       StartCoroutine( LoadLevel(1));
+        StartCoroutine(LoadLevel(1));
     }
 
     /// <summary>
@@ -75,8 +78,8 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void TryAgain()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));   
-            
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+
     }
 
     /// <summary>
@@ -118,7 +121,16 @@ public class MenuHandler : MonoBehaviour
 
     public void UpdateTimer(int time)
     {
-        timerText.text = "Time\n" + time;
+        minute = time / 60;
+        second = time % 60;
+
+        if (second < 10) { timerText.text = "Time\n" + minute + ":0" + second; }
+        else { timerText.text = "Time\n" + minute + ":" + second; }
+    }
+
+    void DisplayClearTime()
+    {
+        clearTimeText.text = minute + ":" + second;
     }
 
     #region Menu Display
@@ -136,8 +148,9 @@ public class MenuHandler : MonoBehaviour
     public void DisplayGameClearedMenu()
     {
         gameClearedMenu.gameObject.SetActive(true);
+        DisplayClearTime();
     }
-      
+
     /// <summary>
     /// Set game pause object active state to true
     /// </summary>
