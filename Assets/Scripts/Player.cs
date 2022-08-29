@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 
     MenuHandler menuHandler;
 
+    int clearTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,12 @@ public class Player : MonoBehaviour
         {
             player.Die();            
         }
+        else
+        {
+            clearTime++;
+        }
 
+        menuHandler.UpdateTimer((int)(clearTime / 100));
         PauseGame();
     }
 

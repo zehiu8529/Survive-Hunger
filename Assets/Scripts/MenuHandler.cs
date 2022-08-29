@@ -11,6 +11,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeReference] TextMeshProUGUI difficultyMenu;
     [SerializeReference] GameObject gameOverMenu;
     [SerializeReference] GameObject gameClearedMenu;
+    [SerializeReference] TextMeshProUGUI timerText;
     Animator transition;
     Animator menuTransition;
     CanvasGroup groupControl;
@@ -105,6 +106,22 @@ public class MenuHandler : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    IEnumerator LoadLevel(int levelNumber)
+    {
+        transition.SetTrigger("Start");
+        menuTransition.SetTrigger("Begin");
+        groupControl.interactable = true;
+        groupControl.blocksRaycasts = true;
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelNumber);
+    }
+
+    public void UpdateTimer(int time)
+    {
+        timerText.text = "Time\n" + time;
+    }
+
+    #region Menu Display
     /// <summary>
     /// Set game over object active state to true
     /// </summary>
@@ -120,17 +137,7 @@ public class MenuHandler : MonoBehaviour
     {
         gameClearedMenu.gameObject.SetActive(true);
     }
-
-    IEnumerator LoadLevel(int levelNumber)
-    {
-        transition.SetTrigger("Start");
-        menuTransition.SetTrigger("Begin");
-        groupControl.interactable = true;
-        groupControl.blocksRaycasts = true;
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelNumber);
-    }
-    
+      
     /// <summary>
     /// Set game pause object active state to true
     /// </summary>
@@ -138,4 +145,5 @@ public class MenuHandler : MonoBehaviour
     {
         gamePauseMenu.gameObject.SetActive(true);
     }
+    #endregion
 }
